@@ -1,5 +1,6 @@
 package com.bezbjednost.InformacionaBezbjednost.serviceInterface.serviceImpl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class PregledService implements PregledServiceInterface {
 	}
 
 	@Override
-	public PregledDTO update(Integer id, PregledDTO p) {
+	public PregledDTO update(Integer id, PregledDTO p)  throws ParseException{
 		Pregled pr = pregledRepository.getOne(id);
 		
 		pr.setSoba(p.getSoba());
