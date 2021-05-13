@@ -42,7 +42,7 @@ public class PregledService implements PregledServiceInterface {
 		pr.setSoba(p.getSoba());
 		pr.setDatum(p.getDatum());
 		pr.setOpis(p.getOpis());
-		pr.setDoktor(p.getDoktor());
+		//pr.setDoktor(p.getDoktor());
 		pr.setPacijent(p.getPacijent());
 		
 		pr = pregledRepository.save(pr);
@@ -62,7 +62,7 @@ public class PregledService implements PregledServiceInterface {
 		pr.setSoba(p.getSoba());
 		pr.setDatum(p.getDatum());
 		pr.setOpis(p.getOpis());
-		pr.setDoktor(p.getDoktor());
+		//pr.setDoktor(p.getDoktor());
 		pr.setPacijent(p.getPacijent());
 		
 		pr = pregledRepository.save(pr);

@@ -23,7 +23,7 @@ public class PregledDTO {
 		this.soba = p.getSoba();
 		this.datum = p.getDatum();
 		this.opis = p.getOpis();
-		this.doktor = p.getDoktor();
+		//this.doktor = p.getDoktor();
 		this.pacijent = p.getPacijent();
 	}
 

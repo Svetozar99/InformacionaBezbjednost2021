@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,14 +29,16 @@ public class Pregled {
 	@Column(name = "opis", nullable = false)
 	private String opis;
 	
-	@Column(name = "doktor", nullable = false)
-	private String doktor;
+	//@Column(name = "doktor", nullable = false)
+	//private String doktor;
 	
 	@Column(name = "pacijent", nullable = false)
 	private String pacijent;
+	
+	@OneToOne
+	@JoinColumn(name = "ljekar", referencedColumnName = "id", nullable = false)
+	private Ljekar ljekar;
 
-	
-	
 	public Pregled() {
 		super();
 	}
@@ -45,7 +49,7 @@ public class Pregled {
 		this.soba = soba;
 		this.datum = datum;
 		this.opis = opis;
-		this.doktor = doktor;
+		//this.doktor = doktor;
 		this.pacijent = pacijent;
 	}
 
@@ -81,6 +85,7 @@ public class Pregled {
 		this.opis = opis;
 	}
 
+	/*
 	public String getDoktor() {
 		return doktor;
 	}
@@ -88,6 +93,7 @@ public class Pregled {
 	public void setDoktor(String doktor) {
 		this.doktor = doktor;
 	}
+	*/
 
 	public String getPacijent() {
 		return pacijent;
