@@ -36,6 +36,10 @@ public class Ljekar {
 	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = false)
 	private Korisnik korisnik;
 	
+	@OneToOne
+	@JoinColumn(name = "administratorKlinike", referencedColumnName = "id", nullable = false)
+	private AdministratorKlinike administratorKlinike;
+	
 	//terapije != pregled ? 
 	//private Set<String> terapije; 
 	
@@ -44,6 +48,14 @@ public class Ljekar {
 	
 	public Ljekar() {
 		super();
+	}
+	
+	public Ljekar(Long id, Set<Pacijent> pacijenti, Set<Pregled> pregledi, String radniKalendar) {
+		super();
+		this.id = id;
+		this.pacijenti = pacijenti;
+		this.pregledi = pregledi;
+		this.radniKalendar = radniKalendar;
 	}
 	
 	public Set<Pacijent> getPacijenti() {
@@ -70,14 +82,6 @@ public class Ljekar {
 		this.radniKalendar = radniKalendar;
 	}
 	
-	public Ljekar(Long id, Set<Pacijent> pacijenti, Set<Pregled> pregledi, String radniKalendar) {
-		super();
-		this.id = id;
-		this.pacijenti = pacijenti;
-		this.pregledi = pregledi;
-		this.radniKalendar = radniKalendar;
-	}
-
 	public Long getId() {
 		return id;
 	}

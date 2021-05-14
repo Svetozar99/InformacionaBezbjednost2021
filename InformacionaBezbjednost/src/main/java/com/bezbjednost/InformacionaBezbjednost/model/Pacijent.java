@@ -27,9 +27,20 @@ public class Pacijent {
 	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = false)
 	private Korisnik korisnik;
 	
+
+
+
+	@OneToOne
+	@JoinColumn(name = "medicinskaSestra", referencedColumnName = "id", nullable = false)
+	private MedicinskaSestra medicinskaSestra;
+	
 	@OneToOne
 	@JoinColumn(name = "ljekar", referencedColumnName = "id", nullable = false)
 	private Ljekar ljekar;
+	
+	@OneToOne
+	@JoinColumn(name = "administratorKlinickogCentra", referencedColumnName = "id", nullable = false)
+	private AdministratorKlinickogCentra administratorKlinickogCentra;
 	
 	//bice lista klinika 
 	//private Set<String> listaKlinika; 
@@ -42,6 +53,23 @@ public class Pacijent {
 	
 	//@Column(name = "profil_korisnika", nullable = false)
 	//private String profilKorisnika;
+	
+	public Pacijent() {
+		super();
+	} 
+	
+	public Pacijent(Long id, Korisnik korisnik, MedicinskaSestra medicinskaSestra, Ljekar ljekar,
+			AdministratorKlinickogCentra administratorKlinickogCentra, Set<Pregled> pregledi,
+			String zdravstveniKarton) {
+		super();
+		this.id = id;
+		this.korisnik = korisnik;
+		this.medicinskaSestra = medicinskaSestra;
+		this.ljekar = ljekar;
+		this.administratorKlinickogCentra = administratorKlinickogCentra;
+		this.pregledi = pregledi;
+		this.zdravstveniKarton = zdravstveniKarton;
+	}
 
 	public Long getId() {
 		return id;
@@ -84,21 +112,20 @@ public class Pacijent {
 		this.zdravstveniKarton = zdravstveniKarton;
 	}
 
-	public Pacijent(Long id, Korisnik korisnik, Ljekar ljekar, Set<Pregled> pregledi,
-			String zdravstveniKarton) {
-		super();
-		this.id = id;
-		this.korisnik = korisnik;
-		this.ljekar = ljekar;
-		this.pregledi = pregledi;
-		this.zdravstveniKarton = zdravstveniKarton;
+	public MedicinskaSestra getMedicinskaSestra() {
+		return medicinskaSestra;
 	}
 
-	public Pacijent() {
-		super();
-	} 
-	
-	
-	
-	
+	public void setMedicinskaSestra(MedicinskaSestra medicinskaSestra) {
+		this.medicinskaSestra = medicinskaSestra;
+	}
+
+	public AdministratorKlinickogCentra getAdministratorKlinickogCentra() {
+		return administratorKlinickogCentra;
+	}
+
+	public void setAdministratorKlinickogCentra(AdministratorKlinickogCentra administratorKlinickogCentra) {
+		this.administratorKlinickogCentra = administratorKlinickogCentra;
+	}
+		
 }

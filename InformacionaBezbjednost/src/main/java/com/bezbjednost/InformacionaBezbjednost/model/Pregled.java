@@ -29,9 +29,6 @@ public class Pregled {
 	@Column(name = "opis", nullable = false)
 	private String opis;
 	
-	//@Column(name = "doktor", nullable = false)
-	//private String doktor;
-	
 	@Column(name = "pacijent", nullable = false)
 	private String pacijent;
 	
@@ -39,6 +36,10 @@ public class Pregled {
 	@JoinColumn(name = "ljekar", referencedColumnName = "id", nullable = false)
 	private Ljekar ljekar;
 
+	@OneToOne
+	@JoinColumn(name = "administratorKlinike", referencedColumnName = "id", nullable = false)
+	private AdministratorKlinike administratorKlinike;
+	
 	public Pregled() {
 		super();
 	}
@@ -84,16 +85,6 @@ public class Pregled {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
-	/*
-	public String getDoktor() {
-		return doktor;
-	}
-
-	public void setDoktor(String doktor) {
-		this.doktor = doktor;
-	}
-	*/
 
 	public String getPacijent() {
 		return pacijent;
