@@ -36,6 +36,14 @@ public class Ljekar {
 	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = false)
 	private Korisnik korisnik;
 	
+	public AdministratorKlinike getAdministratorKlinike() {
+		return administratorKlinike;
+	}
+
+	public void setAdministratorKlinike(AdministratorKlinike administratorKlinike) {
+		this.administratorKlinike = administratorKlinike;
+	}
+
 	@OneToOne
 	@JoinColumn(name = "administratorKlinike", referencedColumnName = "id", nullable = false)
 	private AdministratorKlinike administratorKlinike;

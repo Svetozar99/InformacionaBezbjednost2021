@@ -27,15 +27,15 @@ public class AdministratorKlinike {
 	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = false)
 	private Korisnik korisnik;
 	
+	@OneToOne
+	@JoinColumn(name = "administratorKlinickogCentra", referencedColumnName = "id", nullable = false)
+	private AdministratorKlinickogCentra administratorKlinickogCentra;
+	
 	@OneToMany(mappedBy="administratorKlinike" ,fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	private Set<Pregled> pregledi = new HashSet<Pregled>();
 	
 	@OneToMany(mappedBy="administratorKlinike" ,fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	private Set<Ljekar> ljekari = new HashSet<Ljekar>();
-	
-	@OneToOne
-	@JoinColumn(name = "administratorKlinickogCentra", referencedColumnName = "id", nullable = false)
-	private AdministratorKlinickogCentra administratorKlinickogCentra;
 	
 	//dodati objekte za kliniku i cjenovnik
 	@Column(name = "klinika", nullable = false)
@@ -63,6 +63,22 @@ public class AdministratorKlinike {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public AdministratorKlinickogCentra getAdministratorKlinickogCentra() {
+		return administratorKlinickogCentra;
+	}
+
+	public void setAdministratorKlinickogCentra(AdministratorKlinickogCentra administratorKlinickogCentra) {
+		this.administratorKlinickogCentra = administratorKlinickogCentra;
+	}
+
+	public Set<Pregled> getPregledi() {
+		return pregledi;
+	}
+
+	public void setPregledi(Set<Pregled> pregledi) {
+		this.pregledi = pregledi;
 	}
 
 	public Korisnik getKorisnik() {
