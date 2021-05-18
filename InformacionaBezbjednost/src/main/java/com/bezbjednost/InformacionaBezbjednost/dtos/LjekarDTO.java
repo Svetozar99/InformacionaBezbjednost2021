@@ -13,11 +13,11 @@ public class LjekarDTO {
 	
 	public LjekarDTO(Ljekar ljekar) {
 		this.id = ljekar.getId(); 
-		this.ime = ljekar.getKorisnik().getIme(); 
-		this.prezime = ljekar.getKorisnik().getPrezime();
-		this.korisnickoIme = ljekar.getKorisnik().getKorisnickoIme(); 
-		this.administratorKlinikeDTO = new AdministratorKlinikeDTO(ljekar.getAdministratorKlinike());
-		this.korisnikDTO = new KorisnikDTO(ljekar.getKorisnik());
+		this.ime = ljekar.getIme(); 
+		this.prezime = ljekar.getPrezime(); 
+		this.korisnickoIme = ljekar.getKorisnickoIme(); 
+		//this.administratorKlinikeDTO = new AdministratorKlinikeDTO(ljekar.getAdministratorKlinike());
+		//this.korisnikDTO = new KorisnikDTO(ljekar.getKorisnik());
 	}
 	public LjekarDTO() {
 		super();

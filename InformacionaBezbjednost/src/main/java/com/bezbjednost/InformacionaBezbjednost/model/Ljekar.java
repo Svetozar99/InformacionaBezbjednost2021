@@ -22,6 +22,12 @@ public class Ljekar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private String ime; 
+	
+	private String prezime; 
+	
+	private String korisnickoIme; 
 
 	@OneToMany(mappedBy="ljekar" ,fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	private Set<Pacijent> pacijenti = new HashSet<Pacijent>();
@@ -29,23 +35,15 @@ public class Ljekar {
 	@OneToMany(mappedBy="ljekar" ,fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	private Set<Pregled> pregledi = new HashSet<Pregled>();
 	
-	@Column(name = "radni_kalendar", nullable = false)
+	@Column(name = "radni_kalendar", nullable = true)
 	private String radniKalendar;
 	
 	@OneToOne
-	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "korisnik", referencedColumnName = "id", nullable = true)
 	private Korisnik korisnik;
 	
-	public AdministratorKlinike getAdministratorKlinike() {
-		return administratorKlinike;
-	}
-
-	public void setAdministratorKlinike(AdministratorKlinike administratorKlinike) {
-		this.administratorKlinike = administratorKlinike;
-	}
-
 	@OneToOne
-	@JoinColumn(name = "administratorKlinike", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "administratorKlinike", referencedColumnName = "id", nullable = true)
 	private AdministratorKlinike administratorKlinike;
 	
 	//terapije != pregled ? 
@@ -105,5 +103,38 @@ public class Ljekar {
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
 	}
+	
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+
+	public String getKorisnickoIme() {
+		return korisnickoIme;
+	}
+
+	public void setKorisnickoIme(String korisnickoIme) {
+		this.korisnickoIme = korisnickoIme;
+	}
+	
+	public AdministratorKlinike getAdministratorKlinike() {
+		return administratorKlinike;
+	}
+
+	public void setAdministratorKlinike(AdministratorKlinike administratorKlinike) {
+		this.administratorKlinike = administratorKlinike;
+	}
+
 
 }

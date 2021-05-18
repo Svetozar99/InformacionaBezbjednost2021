@@ -37,6 +37,20 @@ public class AdministratorKlinickogCentra {
 	@OneToMany(mappedBy="administratorKlinickogCentra" ,fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	private Set<Pacijent> pacijenti = new HashSet<Pacijent>();
 	
+	public void add(AdministratorKlinike adminKlinike) {
+		if(adminKlinike.getAdministratorKlinickogCentra() != null)
+			adminKlinike.getAdministratorKlinickogCentra().getAdministratoriKlinika().remove(adminKlinike);
+		adminKlinike.setAdministratorKlinickogCentra(this);
+		administratoriKlinika.add(adminKlinike);
+	}
+	
+	public void remove(AdministratorKlinike adminKlinike) {
+		adminKlinike.setAdministratorKlinickogCentra(null);
+		administratoriKlinika.remove(adminKlinike);
+	}
+	
+	//uraditi isto za pacijente 
+	
 	public AdministratorKlinickogCentra() {
 		super();
 	}
