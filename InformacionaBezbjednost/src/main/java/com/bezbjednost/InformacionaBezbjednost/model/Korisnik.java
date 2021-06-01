@@ -1,10 +1,16 @@
 package com.bezbjednost.InformacionaBezbjednost.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +21,7 @@ public class Korisnik {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "korisnicko_ime", nullable = false)
+	@Column(name = "korisnicko_ime", nullable = false, unique = true)
 	private String korisnickoIme;
 
 	@Column(name = "lozinka", nullable = false)
@@ -27,8 +33,11 @@ public class Korisnik {
 	@Column(name = "prezime", nullable = false)
 	private String prezime;
 	
-	@Column(name = "uloga", nullable = false)
+	@Column(name = "euloga", nullable = false)
 	private EUloga uloga;
+	
+	@OneToMany(mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private List<KorisnikAuthorithy> korisnikAuthorities = new ArrayList<KorisnikAuthorithy>();
 	
 	public Korisnik() {
 		super();
@@ -42,6 +51,20 @@ public class Korisnik {
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloga = uloga;
+	}
+	
+	
+
+	public Korisnik(Long id, String korisnickoIme, String lozinka, String ime, String prezime, EUloga uloga,
+			List<KorisnikAuthorithy> korisnikAuthorities) {
+		super();
+		this.id = id;
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.uloga = uloga;
+		this.korisnikAuthorities = korisnikAuthorities;
 	}
 
 	public Long getId() {
@@ -90,6 +113,14 @@ public class Korisnik {
 
 	public void setUloga(EUloga uloga) {
 		this.uloga = uloga;
+	}
+
+	public List<KorisnikAuthorithy> getKorisnikAuthorities() {
+		return korisnikAuthorities;
+	}
+
+	public void setKorisnikAuthorities(List<KorisnikAuthorithy> korisnikAuthorities) {
+		this.korisnikAuthorities = korisnikAuthorities;
 	}
 	
 }

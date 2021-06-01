@@ -14,6 +14,15 @@ public class KorisnikService {
 	
 	public Korisnik findOne(Long id) {
 		return korisnikRepository.findById(id).orElse(null);
-
 	}
+	
+	public Korisnik findByUsername(String username) {
+		return korisnikRepository.findByKorisnickoIme(username);
+	}
+	
+	public Korisnik save(Korisnik k){
+		return korisnikRepository.save(k);
+	}
+	
+	
 }

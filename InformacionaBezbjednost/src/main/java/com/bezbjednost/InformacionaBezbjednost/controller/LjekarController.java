@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ import com.bezbjednost.InformacionaBezbjednost.serviceInterface.serviceImpl.Kori
 import com.bezbjednost.InformacionaBezbjednost.serviceInterface.serviceImpl.LjekarService;
 
 @RestController
-@RequestMapping(value = "api/ljekar")
+@RequestMapping(value = "/api")
 public class LjekarController {
 	
 	@Autowired
@@ -34,7 +35,8 @@ public class LjekarController {
 	@Autowired
 	private AdministratorKlinikeService administratorKlinikeService; 
 	
-	@RequestMapping(value="/all", method= RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
+	@RequestMapping(value="/auth/all", method= RequestMethod.GET)
 	public ResponseEntity<List<LjekarDTO>> getAllLjekari(){
 		
 		List<Ljekar> ljekari = ljekarService.findAll(); 
@@ -47,7 +49,8 @@ public class LjekarController {
 		return new ResponseEntity<>(dtos, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
+	@RequestMapping(value="/auth/{id}", method = RequestMethod.GET)
 	public ResponseEntity<LjekarDTO> getLjekar(@PathVariable Long id){
 		Ljekar ljekar = ljekarService.findOne(id);
 		
@@ -58,7 +61,8 @@ public class LjekarController {
 		return new ResponseEntity<LjekarDTO>(new LjekarDTO(ljekar), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
+	@RequestMapping(value="/auth/saveLekar", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<LjekarDTO> saveLjekar(@RequestBody LjekarDTO ljekarDTO){
 		Ljekar ljekar = new Ljekar();
 		ljekar.setIme(ljekarDTO.getIme());
@@ -81,7 +85,8 @@ public class LjekarController {
 		return new ResponseEntity<>(new LjekarDTO(ljekar), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value="/{id}",consumes="application/json")
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
+	@PutMapping(value="/auth/updateLekar/{id}",consumes="application/json")
 	public ResponseEntity<LjekarDTO> updateLjekar(@RequestBody LjekarDTO ljekarDTO, @PathVariable("id") Long id) {
 		
 		Ljekar ljekar = ljekarService.findOne(id);
@@ -106,7 +111,8 @@ public class LjekarController {
 		return new ResponseEntity<>(new LjekarDTO(ljekar), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method= RequestMethod.DELETE)
+	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
+	@RequestMapping(value="auth/deleteLekar/{id}", method= RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteLjekar(@PathVariable Long id){
 		Ljekar ljekar = ljekarService.findOne(id);
 		
