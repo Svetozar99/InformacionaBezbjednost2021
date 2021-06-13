@@ -29,11 +29,11 @@ public class LjekarController {
 	@Autowired
 	private LjekarService ljekarService; 
 	
-	@Autowired
-	private KorisnikService korisnikService; 
+	//@Autowired
+	//private KorisnikService korisnikService; 
 	
-	@Autowired
-	private AdministratorKlinikeService administratorKlinikeService; 
+	//@Autowired
+	//private AdministratorKlinikeService administratorKlinikeService; 
 	
 	@PreAuthorize("hasAnyAuthority('ADMINISTRATOR_KLINIKE', 'ADMINISTRATOR_KLINICKOG_CENTRA', 'MEDICINSKA_SESTRA')")
 	@RequestMapping(value="/auth/all", method= RequestMethod.GET)

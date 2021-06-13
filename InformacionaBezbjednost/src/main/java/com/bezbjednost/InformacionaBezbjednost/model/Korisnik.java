@@ -33,7 +33,7 @@ public class Korisnik {
 	@Column(name = "prezime", nullable = false)
 	private String prezime;
 	
-	@Column(name = "euloga", nullable = false)
+	@Column(name = "euloga", nullable = true)
 	private EUloga uloga;
 	
 	@OneToMany(mappedBy = "korisnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)

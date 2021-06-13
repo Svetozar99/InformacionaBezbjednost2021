@@ -68,7 +68,7 @@ public class KorisnikController {
 		if (userService.findByUsername(username) != null) {
 			
 			return ResponseEntity
-					.ok()
+					.unprocessableEntity()
 					.header("error", "true")
 					.header("message", "Korisnik sa korisnickim imenom vec postoji")
 					.build();
